@@ -11,13 +11,15 @@ import {
 import useDarkModeStore from "../../context/darkModeContext";
 
 const ChartBox = styled.div`
-  /* Box */
   background-color: var(--color-grey-0);
   border: 1px solid var(--color-grey-100);
   border-radius: var(--border-radius-md);
-
   padding: 2.4rem 3.2rem;
   grid-column: 3 / span 2;
+
+  max-width: 100%; /* 🔑 evita que el gráfico se desborde */
+  overflow: hidden; /* 🔑 recorta contenido que se sale */
+  position: relative;
 
   & > *:first-child {
     margin-bottom: 1.6rem;
@@ -157,7 +159,7 @@ function DurationChart({ confirmedStays }) {
             dataKey="value"
             innerRadius={85}
             outerRadius={120}
-            cx="40%"
+            cx="50%"
             cy="50%"
             paddingAngle={3}
           >
