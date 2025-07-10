@@ -142,7 +142,9 @@ function prepareData(startData, stays) {
 
   return data;
 }
-
+const userAgent = navigator.userAgent;
+const isOpera = userAgent.includes("OPR");
+console.log(isOpera);
 function DurationChart({ confirmedStays }) {
   const isDarkModeOn = useDarkModeStore((state) => state.isDarkModeOn);
   const startData =
@@ -151,18 +153,16 @@ function DurationChart({ confirmedStays }) {
   return (
     <ChartBox>
       <Heading as="h2">Stay duration summary</Heading>
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart
-          width="100%"
-          height="100%"
-          margin={{ top: 5, right: 5, bottom: 5, left: 5 }}
-        >
+
+      <ResponsiveContainer width="100%" height={240}>
+        <PieChart>
           <Pie
+            height={50}
             data={data}
             nameKey="duration"
             dataKey="value"
-            innerRadius={85}
-            outerRadius={120}
+            innerRadius={isOpera ? 45 : 85}
+            outerRadius={isOpera ? 80 : 120}
             cx="50%"
             cy="50%"
             paddingAngle={3}
